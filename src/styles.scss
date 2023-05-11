@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "material-icons/iconfont/material-icons.css";
+
+@import "src/assets/styles/index";
+
+*,
+*::after,
+*::before {
+  font-family: "Poppins", "Roboto Slab", "Times New Roman", serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  background-color: #eff3ff;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+/* mat-carousel {
+  .carousel-slide {
+    background-size: contain;
+    max-height: 80%;
+    margin: 0 0 5rem;
+  }
+}
+ */

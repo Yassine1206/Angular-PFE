@@ -1,0 +1,21 @@
+.product {
+  &-box {
+    display: grid;
+    row-gap: 2.5rem;
+    margin: 2rem 0;
+  }
+  &-list {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    column-gap: 0.5rem;
+    row-gap: 0.25rem;
+  }
+}
+
+.product {
+  grid-column: 2 /3;
+
+  &-none {
+    justify-self: center;
+  }
+}

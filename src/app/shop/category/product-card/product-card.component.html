@@ -1,0 +1,13 @@
+<div class="card-wrapper">
+  <img src="{{ imageUrl }}" class="card-img" alt="{{ product.Name }}" />
+  <div class="card-text-1">
+    <h5 class="card-title">{{ product.Name }}</h5>
+    <p class="card-description">{{ product.description }}</p>
+  </div>
+  <div class="card-text-2">
+    <p class="card-price">{{ product.Price }} DT</p>
+    <button mat-button class="positive-btn" (click)="addToCart(product)">
+      Ajouter au panier
+    </button>
+  </div>
+</div>

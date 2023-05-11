@@ -1,0 +1,41 @@
+<div class="cart-wrapper">
+  <h3 class="title">Panier</h3>
+  <div class="element-box" *ngIf="cartItems.length > 0">
+    <div *ngFor="let element of cartItems" class="element-list">
+      <app-cart-element
+        [element]="element"
+        (addProduct)="onAddToCart($event)"
+        (removeProduct)="onRemoveFromCart($event)"
+        (removeAllQuantityProduct)="onRemoveAllQuantityFromCart($event)"
+        class="element"
+      ></app-cart-element>
+    </div>
+    <div class="total-box">
+      <div class="total-wrapper">
+        <div class="total-price">
+          Total : {{ total | number : "1.3-3" }} TND
+        </div>
+      </div>
+    </div>
+
+    <div class="order-wrapper">
+      <button mat-button class="positive-btn order-button" (click)="onOrder()">
+        Commander
+      </button>
+    </div>
+  </div>
+  <div class="element-box" *ngIf="cartItems.length <= 0">
+    <div class="no-product">Aucun produit</div>
+
+    <div class="order-wrapper">
+      <button
+        mat-button
+        class="positive-btn order-button"
+        [disabled]="cartItems.length <= 0"
+        (click)="onOrder()"
+      >
+        Commander
+      </button>
+    </div>
+  </div>
+</div>

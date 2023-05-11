@@ -1,0 +1,6 @@
+<div class="product-box">
+  <div *ngFor="let product of products" class="product-list">
+    <app-product-card [product]="product" class="product"></app-product-card>
+  </div>
+  <div class="product-none" *ngIf="products.length <= 0">Auncun produit</div>
+</div>

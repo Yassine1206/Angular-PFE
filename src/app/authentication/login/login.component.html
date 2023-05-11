@@ -1,0 +1,44 @@
+<div class="login-wrapper">
+  <h3 class="title">Se connecter</h3>
+  <div class="form-box">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Entrez votre email"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="form?.['email']?.invalid && form?.['email']?.errors?.['required']"
+          >Veuillez saisir votre email</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          placeholder="Entrez votre mot de passe"
+          formControlName="password"
+        /><mat-icon matSuffix (click)="hide = !hide">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+        <mat-error
+          *ngIf="form?.['password']?.invalid && form?.['password']?.errors?.['required']"
+          >Veuillez saisir votre mot de passe</mat-error
+        >
+      </mat-form-field>
+      <button
+        mat-button
+        type="submit"
+        class="positive-btn"
+        [disabled]="loginForm.invalid"
+      >
+        Se connecter
+      </button>
+    </form>
+  </div>
+</div>

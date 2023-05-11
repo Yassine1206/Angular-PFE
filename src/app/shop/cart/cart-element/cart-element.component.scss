@@ -1,0 +1,55 @@
+.card {
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1fr 1.2fr 0.6fr;
+    column-gap: 1rem;
+    row-gap: 0.25rem;
+    align-items: center;
+  }
+
+  &-img {
+    width: 50%;
+    max-width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  &-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #4c556e;
+  }
+
+  &-quantity {
+    font-size: 1.1rem;
+    color: #5c799f;
+    padding: 0 1.5rem;
+  }
+  &-price {
+    font-size: 1.1rem;
+    color: #5c799f;
+  }
+}
+
+.quantity {
+  &-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #5c799f;
+    width: fit-content;
+    justify-content: space-around;
+  }
+
+  &-button {
+    padding: 0 0.5rem;
+    min-width: fit-content;
+    background-color: #5c799f;
+    color: #fff;
+    border-radius: 0 !important;
+  }
+}
+
+.delete-button {
+  color: #929292;
+}

@@ -1,0 +1,96 @@
+<div class="header">
+  <div class="topbar">
+    <div class="logo-img">
+      <a [routerLink]="['/']"> <img src="/assets/logos/logo.png" /></a>
+    </div>
+    <div class="topbar-items">
+      <a class="topbar-item cart" [routerLink]="['/panier']">
+        <span class="cart-icon-badge" *ngIf="cartCount > 0">
+          <mat-icon fontSet="material-icons-outlined" class="cart-icon"
+            >shopping_cart</mat-icon
+          >
+          <span class="cart-badge badge badge-pill badge-danger">{{
+            cartCount
+          }}</span>
+        </span>
+        <mat-icon
+          fontSet="material-icons-outlined"
+          class="cart-icon"
+          *ngIf="cartCount === 0"
+          >shopping_cart</mat-icon
+        >
+        <div class="topbar-text">Panier</div>
+      </a>
+      <a [routerLink]="['/connexion']" class="topbar-item" *ngIf="!isLoggedIn()"
+        >Se connecter</a
+      >
+      <a
+        [routerLink]="['/inscription']"
+        class="topbar-item"
+        *ngIf="!isLoggedIn()"
+        >Créer un compte</a
+      >
+      <a [routerLink]="['/profile']" class="topbar-item" *ngIf="isLoggedIn()"
+        >Profile</a
+      >
+      <button
+        mat-button
+        class="topbar-item logout-button"
+        *ngIf="isLoggedIn()"
+        (click)="logout()"
+      >
+        Se déconnecter
+      </button>
+    </div>
+  </div>
+  <div class="menu">
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a
+            [routerLink]="['/accueil']"
+            [routerLinkActive]="['nav-link-active']"
+            class="nav-link"
+            >Accueil</a
+          >
+        </li>
+        <li *ngFor="let category of displayCategories" class="nav-item">
+          <a
+            routerLink="/categorie/{{ category }}"
+            [routerLinkActive]="['nav-link-active']"
+            class="nav-link"
+            >{{ category }}</a
+          >
+
+          <!--   <a routerLink="/categorie/{{ category.Code }}" class="nav-link"
+            >{{category.Description
+            }}</a
+          >
+           -->
+        </li>
+
+        <mat-menu #menu="matMenu">
+          <a
+            mat-menu-item
+            *ngFor="let category of categories.slice(5)"
+            routerLink="/categorie/{{ category }}"
+            [routerLinkActive]="['nav-link-active']"
+            class="nav-link"
+            >{{ category }}</a
+          >
+        </mat-menu>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          class="topbar-item"
+          *ngIf="categories.length > 5"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </ul>
+    </nav>
+    <!-- <div *ngFor="let category of displayCategories" class="category">
+      {{ category }}
+    </div> -->
+  </div>
+</div>

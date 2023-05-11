@@ -1,0 +1,99 @@
+<div class="signup-wrapper">
+  <h3 class="title">Créer un compte</h3>
+  <div class="form-box">
+    <form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Nom et prénom</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Entrez votre nom et prénom"
+          formControlName="name"
+        />
+        <mat-error
+          *ngIf="form?.['name']?.invalid && form?.['name']?.errors?.['required']"
+          >Veuillez saisir votre nom et prénom</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Entrez votre adresse"
+          formControlName="address"
+        />
+        <mat-error
+          *ngIf="form?.['address']?.invalid && form?.['address']?.errors?.['required']"
+          >Veuillez saisir votre adresse</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Ville</mat-label>
+        <mat-select formControlName="town">
+          <mat-option *ngFor="let town of towns" [value]="town.value">
+            {{ town.value }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="form?.['town']?.invalid && form?.['town']?.errors?.['required']"
+          >Veuillez saisir votre ville</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Téléphone</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Entrez votre numéro de téléphone"
+          formControlName="phone"
+        />
+        <mat-error
+          *ngIf="form?.['phone']?.invalid && form?.['phone']?.errors?.['required']"
+          >Veuillez saisir votre numéro de téléphone</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Entrez votre email"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="form?.['email']?.invalid && form?.['email']?.errors?.['required']"
+          >Veuillez saisir votre email</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width" appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          placeholder="Entrez votre mot de passe"
+          formControlName="password"
+        /><mat-icon matSuffix (click)="hide = !hide">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+        <mat-error
+          *ngIf="form?.['password']?.invalid && form?.['password']?.errors?.['required']"
+          >Veuillez saisir votre mot de passe</mat-error
+        >
+      </mat-form-field>
+      <button
+        mat-button
+        type="submit"
+        class="positive-btn signup-button"
+        [disabled]="signupForm.invalid"
+      >
+        Inscription
+      </button>
+    </form>
+  </div>
+</div>

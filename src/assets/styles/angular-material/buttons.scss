@@ -1,0 +1,23 @@
+.positive-btn {
+  background-color: #5c799f;
+  color: #eff3ff;
+  border: 2px solid #5c799f !important;
+  box-shadow: rgba(92, 121, 159, 0.2) 2px 2px 5px 0px;
+  border-radius: 0.5rem !important;
+  min-width: 7rem !important;
+
+  &:not([disabled]):hover {
+    background-color: #5c799f;
+    border: 2px solid #002d68 !important;
+  }
+}
+.positive-btn.mat-button.mat-button-disabled.mat-button-disabled {
+  color: rgba(239, 243, 255, 0.6);
+}
+
+.logout-button.mat-button:hover:not(.mat-button-disabled)
+  .mat-button-focus-overlay,
+.delete-button.mat-button:hover:not(.mat-button-disabled)
+  .mat-button-focus-overlay {
+  opacity: 0 !important;
+}
