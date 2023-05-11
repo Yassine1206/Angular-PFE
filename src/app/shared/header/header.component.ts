@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
     'sports',
     'téléphones',
     'animaux',
+    'bureau',
   ];
   displayCategories: any[] = [];
   cartCount: number = 0;
