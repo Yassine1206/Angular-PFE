@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   hide = true;
 
-  towns = [{ value: 'Hammam Lif' }, { value: 'Ezzahra' }];
+  cities!: any;
+  // cities = [{ value: 'Hammam Lif' }, { value: 'Ezzahra' }];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,13 +28,23 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getCities();
+
     this.signupForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      town: new FormControl('', [Validators.required]),
-      phone: new FormControl(null, [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
+    });
+  }
+
+  getCities() {
+    this.authService.getCity().subscribe({
+      next: (data: any) => {
+        this.cities = data;
+      },
     });
   }
 
@@ -47,8 +59,8 @@ export class SignupComponent implements OnInit {
     return this.signupForm.get('address');
   }
 
-  get townInput() {
-    return this.signupForm.get('town');
+  get cityInput() {
+    return this.signupForm.get('city');
   }
 
   get phoneInput() {
@@ -64,10 +76,10 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(): void {
-    let sentData = {
+    let sentData: User = {
       name: this.nameInput?.value,
       address: this.addressInput?.value,
-      town: this.townInput?.value,
+      city: this.cityInput?.value,
       phone: this.phoneInput?.value,
       email: this.emailInput?.value,
       password: this.passwordInput?.value,
@@ -75,6 +87,7 @@ export class SignupComponent implements OnInit {
     this.authService.signup(sentData).subscribe({
       next: (data: any) => {
         console.log(data);
+        this.router.navigate(['/accueil']);
       },
     });
   }

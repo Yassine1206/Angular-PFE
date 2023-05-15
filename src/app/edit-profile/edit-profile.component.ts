@@ -17,7 +17,8 @@ export class EditProfileComponent implements OnInit {
   profileForm!: FormGroup;
   hide = true;
 
-  towns = [{ value: 'Hammam Lif' }, { value: 'Ezzahra' }];
+  cities!: any;
+  userData!: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,13 +27,32 @@ export class EditProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getAuthData();
     this.profileForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      address: new FormControl('', [Validators.required]),
-      town: new FormControl('', [Validators.required]),
-      phone: new FormControl(null, [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      name: new FormControl(this.userData.name, [Validators.required]),
+      address: new FormControl(this.userData.Address, [Validators.required]),
+      city: new FormControl(this.userData.city, [Validators.required]),
+      phone: new FormControl(this.userData.phone, [Validators.required]),
+      email: new FormControl(this.userData.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl(this.userData.password, [Validators.required]),
+    });
+
+    this.getCities();
+  }
+
+  getAuthData() {
+    this.userData = this.authService.getAuthData()[0];
+    console.log(this.userData);
+  }
+
+  getCities() {
+    this.authService.getCity().subscribe({
+      next: (data: any) => {
+        this.cities = data;
+      },
     });
   }
 
@@ -47,8 +67,8 @@ export class EditProfileComponent implements OnInit {
     return this.profileForm.get('address');
   }
 
-  get townInput() {
-    return this.profileForm.get('town');
+  get cityInput() {
+    return this.profileForm.get('city');
   }
 
   get phoneInput() {
@@ -67,15 +87,18 @@ export class EditProfileComponent implements OnInit {
     let sentData = {
       name: this.nameInput?.value,
       address: this.addressInput?.value,
-      town: this.townInput?.value,
+      city: this.cityInput?.value,
       phone: this.phoneInput?.value,
       email: this.emailInput?.value,
       password: this.passwordInput?.value,
     };
-    this.authService.signup(sentData).subscribe({
+
+    this.authService.editAuthData(sentData);
+
+    /*     this.authService.signup(sentData).subscribe({
       next: (data: any) => {
         console.log(data);
       },
-    });
+    }); */
   }
 }

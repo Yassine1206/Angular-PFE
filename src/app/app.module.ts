@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { CartElementComponent } from './shop/cart/cart-element/cart-element.comp
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { BasicAuthInterceptor } from './services/basic-auth.interceptor';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ProductCardComponent,
     CartElementComponent,
     EditProfileComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MatButtonModule,
     MatSelectModule,
     MatMenuModule,
+    MatDialogModule,
   ],
   providers: [
     MatIconRegistry,

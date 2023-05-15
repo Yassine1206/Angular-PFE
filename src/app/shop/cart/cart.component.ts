@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +15,11 @@ export class CartComponent implements OnInit {
 
   total = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    public dialog: MatDialog,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getCartData();
@@ -25,10 +32,47 @@ export class CartComponent implements OnInit {
       0
     );
   }
+  isLoggedIn(): boolean {
+    return !!this.authService.getAuthData();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalComponent);
+
+    /* dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    }); */
+  }
 
   onOrder() {
-    this.cartService.clearCart();
-    this.getCartData();
+    if (!this.isLoggedIn()) {
+      this.openDialog();
+    } else {
+      const codeClient = this.authService.getAuthData()[0].no;
+      console.log(this.cartService.getCartItems());
+
+      const productArray = this.cartService.getCartItems();
+
+      const newProductArray = productArray.map(
+        (obj: { No: any; quantity: any }) => {
+          const { No: codearticle, quantity: quantite } = obj;
+          return { codearticle, quantite };
+        }
+      );
+
+      let sentData = {
+        codeclient: codeClient,
+        lines: newProductArray,
+      };
+      console.log(JSON.stringify(sentData));
+      this.cartService.order(sentData).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.cartService.clearCart();
+          this.getCartData();
+        },
+      });
+    }
   }
 
   onAddToCart(product: any) {

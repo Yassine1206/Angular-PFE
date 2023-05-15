@@ -1,15 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private endpointUrl = environment.endPointUrl;
+
   cartData: any[] = [];
   cartCount$ = new BehaviorSubject<number>(0);
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadCartData();
     this.updateCartCount();
   }
@@ -26,6 +30,10 @@ export class CartService {
   private updateCartCount() {
     let count = this.cartData.reduce((acc, item) => acc + item.quantity, 0);
     this.cartCount$.next(count);
+  }
+
+  order(data: any): Observable<any> {
+    return this.http.post<any>(this.endpointUrl + '/order/insert', data);
   }
 
   addToCart(product: Product) {

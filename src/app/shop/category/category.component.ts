@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+
 import { ActivatedRoute, Params } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -13,23 +15,26 @@ export class CategoryComponent implements OnInit {
   products: Product[] = [];
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    this.showProducts();
-  }
-
-  showProducts() {
+    private route: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
     this.route.params.subscribe((params: Params) => {
       this.category = params['code'];
+      this.showProducts();
     });
+  }
+
+  ngOnInit(): void {}
+
+  showProducts() {
+    console.log(this.category);
+
     this.productService.getProducts(this.category).subscribe({
       next: (data: any) => {
         console.log(data);
         this.products = data;
+        console.log(this.products);
       },
     });
-    console.log(this.products);
   }
 }

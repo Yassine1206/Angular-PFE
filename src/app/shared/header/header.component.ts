@@ -11,17 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  // categories: any[] = [];
-  categories = [
-    'informatique',
-    'cuisine',
-    'mode',
-    'santé',
-    'sports',
-    'téléphones',
-    'animaux',
-    'bureau',
-  ];
+  categories: any[] = [];
+  /* 0 */
   displayCategories: any[] = [];
   cartCount: number = 0;
   cartCountSubscription!: Subscription;
@@ -39,10 +30,10 @@ export class HeaderComponent implements OnInit {
     this.productService.getAllCategories().subscribe({
       next: (data: any) => {
         console.log(data);
-        // this.categories = data;
+        this.categories = data;
+        this.displayCategories = this.categories.slice(0, 5);
       },
     });
-    this.displayCategories = this.categories.slice(0, 5);
 
     this.cartCountSubscription = this.cartService.cartCount$.subscribe(
       (count) => {

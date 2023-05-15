@@ -22,8 +22,11 @@
     font-size: 1.1rem;
     color: #f7941e;
   }
-
-  &-description {
+  &-quantity {
+    margin: 0.5rem 0;
+  }
+  &-description,
+  &-quantity {
     font-size: 0.9rem;
     color: #4c556e;
   }

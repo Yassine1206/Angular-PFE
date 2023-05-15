@@ -1,0 +1,42 @@
+.modal {
+  &-header {
+    background-color: #d1dbf5;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-close {
+    padding: 0;
+    min-width: auto;
+    align-self: start;
+  }
+
+  &-content {
+    padding: 1rem;
+
+    &-text {
+      margin: 0;
+    }
+  }
+
+  &-buttons {
+    justify-content: flex-end;
+  }
+}
+
+.header-wrapper {
+  display: flex;
+  color: #4c556e;
+  gap: 0.5rem;
+  padding: 1rem 5rem 1rem 0;
+  align-items: center;
+}
+
+.mat-dialog-title {
+  margin: 0;
+}
+
+.validate-icon {
+  font-weight: 900;
+}

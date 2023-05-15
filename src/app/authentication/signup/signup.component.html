@@ -32,13 +32,13 @@
 
       <mat-form-field class="field-full-width" appearance="outline">
         <mat-label>Ville</mat-label>
-        <mat-select formControlName="town">
-          <mat-option *ngFor="let town of towns" [value]="town.value">
-            {{ town.value }}
+        <mat-select formControlName="city">
+          <mat-option *ngFor="let city of cities" [value]="city.city">
+            {{ city.city }}
           </mat-option>
         </mat-select>
         <mat-error
-          *ngIf="form?.['town']?.invalid && form?.['town']?.errors?.['required']"
+          *ngIf="form?.['city']?.invalid && form?.['city']?.errors?.['required']"
           >Veuillez saisir votre ville</mat-error
         >
       </mat-form-field>

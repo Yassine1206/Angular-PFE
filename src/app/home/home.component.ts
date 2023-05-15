@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   slides = [
     {
-      src: 'assets/img/pc.jpg',
+      src: 'assets/img/carousel_1.svg',
     },
     {
-      src: 'assets/img/pc.jpg',
+      src: 'assets/img/carousel_2.svg',
     },
     {
-      src: 'assets/img/pc.jpg',
+      src: 'assets/img/carousel_3.svg',
     },
   ];
   constructor() {}

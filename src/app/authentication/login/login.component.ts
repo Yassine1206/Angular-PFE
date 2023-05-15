@@ -46,15 +46,13 @@ export class LoginComponent implements OnInit {
       email: this.emailInput?.value,
       password: this.passwordInput?.value,
     };
-    this.authService.saveAuthData(sentData);
 
-    /*     this.authService.login(sentData).subscribe({
+    this.authService.login(sentData).subscribe({
       next: (data: any) => {
-        console.log(data);
-        this.authService.saveAuthData(sentData);
+        this.authService.saveAuthData(data);
 
         this.router.navigate(['/accueil']);
       },
-    }); */
+    });
   }
 }

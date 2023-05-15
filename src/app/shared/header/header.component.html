@@ -1,7 +1,9 @@
 <div class="header">
   <div class="topbar">
     <div class="logo-img">
-      <a [routerLink]="['/']"> <img src="/assets/logos/logo.png" /></a>
+      <a [routerLink]="['/']">
+        <img class="logo" src="/assets/logos/logo.png"
+      /></a>
     </div>
     <div class="topbar-items">
       <a class="topbar-item cart" [routerLink]="['/panier']">
@@ -55,28 +57,19 @@
           >
         </li>
         <li *ngFor="let category of displayCategories" class="nav-item">
-          <a
-            routerLink="/categorie/{{ category }}"
-            [routerLinkActive]="['nav-link-active']"
-            class="nav-link"
-            >{{ category }}</a
-          >
-
-          <!--   <a routerLink="/categorie/{{ category.Code }}" class="nav-link"
-            >{{category.Description
-            }}</a
-          >
-           -->
+          <a [routerLink]="['/categorie/' + category.Code]" class="nav-link">{{
+            category.Description
+          }}</a>
         </li>
 
         <mat-menu #menu="matMenu">
           <a
             mat-menu-item
             *ngFor="let category of categories.slice(5)"
-            routerLink="/categorie/{{ category }}"
+            [routerLink]="['/categorie/' + category.Code]"
             [routerLinkActive]="['nav-link-active']"
             class="nav-link"
-            >{{ category }}</a
+            >{{ category.Description }}</a
           >
         </mat-menu>
         <button
