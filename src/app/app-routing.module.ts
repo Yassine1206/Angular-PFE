@@ -19,17 +19,7 @@ const routes: Routes = [
   { path: 'profile', component: EditProfileComponent },
   { path: 'categorie/:code', component: CategoryComponent },
 
-  {
-    path: 'categorie',
-    // component: CategoryComponent,
-    children: [{ path: ':code', component: CategoryComponent }],
-  },
-
   { path: 'panier', component: CartComponent },
-  // {
-  //   path: 'main/:id',
-  //   component: ViewUserComponent,
-  // },
 ];
 
 @NgModule({

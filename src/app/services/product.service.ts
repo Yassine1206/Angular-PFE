@@ -12,11 +12,6 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  /* getAllCategories(): string[] /*  Observable<String[]> */
-  // return this.http.get<String[]>(this.endpointUrl + '/category/all');
-
-  // return ['Catégorie 1', 'Catégorie 2', 'Catégorie 3'];*/
-
   getAllCategories(): Observable<any> {
     return this.http.get<any>(this.endpointUrl + '/category/all');
   }

@@ -19,7 +19,6 @@ export class SignupComponent implements OnInit {
   hide = true;
 
   cities!: any;
-  // cities = [{ value: 'Hammam Lif' }, { value: 'Ezzahra' }];
 
   constructor(
     private formBuilder: FormBuilder,

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Product } from 'src/app/models/product';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
@@ -38,10 +37,6 @@ export class CartComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ModalComponent);
-
-    /* dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    }); */
   }
 
   onOrder() {
@@ -62,7 +57,7 @@ export class CartComponent implements OnInit {
 
       let sentData = {
         codeclient: codeClient,
-        lines: newProductArray,
+        lines: JSON.stringify(newProductArray),
       };
       console.log(JSON.stringify(sentData));
       this.cartService.order(sentData).subscribe({

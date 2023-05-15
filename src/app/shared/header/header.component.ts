@@ -12,7 +12,6 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HeaderComponent implements OnInit {
   categories: any[] = [];
-  /* 0 */
   displayCategories: any[] = [];
   cartCount: number = 0;
   cartCountSubscription!: Subscription;
@@ -26,7 +25,6 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.categories = this.productService.getAllCategories();
     this.productService.getAllCategories().subscribe({
       next: (data: any) => {
         console.log(data);
