@@ -85,20 +85,25 @@ export class EditProfileComponent implements OnInit {
 
   onEditProfile(): void {
     let sentData = {
+      no: this.userData.no,
       name: this.nameInput?.value,
       address: this.addressInput?.value,
       city: this.cityInput?.value,
-      phone: this.phoneInput?.value,
       email: this.emailInput?.value,
       password: this.passwordInput?.value,
+      phone: this.phoneInput?.value
+
+
     };
 
-    this.authService.editAuthData(sentData);
 
-    /*     this.authService.signup(sentData).subscribe({
+         this.authService.editProfile(sentData).subscribe({
       next: (data: any) => {
         console.log(data);
+        this.authService.editAuthData(sentData);
+        this.router.navigate(['/accueil']);
+
       },
-    }); */
+    });
   }
 }

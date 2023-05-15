@@ -2,8 +2,10 @@
   <img src="{{ imageUrl }}" class="card-img" alt="{{ product.Name }}" />
   <div class="card-text-1">
     <h5 class="card-title">{{ product.Name }}</h5>
-    <p class="card-quantity">Quantité en stock: {{ product.Quantity }}</p>
-    <p class="card-description">{{ product.description }}</p>
+    <p class="card-quantity" *ngIf="prodQuantity > 0">Quantité en stock: {{ product.Quantity }}</p>
+    <p class="card-quantity" *ngIf="prodQuantity <= 0">Quantité en stock: vide</p>
+
+    <p class="card-description" *ngIf="product.description !== 'anyType{}'">{{ product.description }}</p>
   </div>
   <div class="card-text-2">
     <p class="card-price">{{ product.Price }} DT</p>

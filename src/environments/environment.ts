@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  endPointUrl: 'http://192.168.1.47:8081',
-  endPointUrlImages: 'http://192.168.1.47:82/images/',
+  endPointUrl: 'http://127.0.0.1:8081',
+  endPointUrlImages: 'http://127.0.0.1:82/images/',
   username: 'admin',
   password: 'password',
 };

@@ -10,12 +10,16 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: any;
+
   imageUrl!: string;
+  prodQuantity!: number;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.imageUrl = environment.endPointUrlImages + this.product.Urlimage;
+    this.prodQuantity = Number(this.product.Quantity);
+    console.log(this.product);
   }
 
   addToCart(product: Product) {

@@ -57,7 +57,8 @@
           >
         </li>
         <li *ngFor="let category of displayCategories" class="nav-item">
-          <a [routerLink]="['/categorie/' + category.Code]" class="nav-link">{{
+          <a [routerLink]="['/categorie/' + category.Code]"
+             [routerLinkActive]="['nav-link-active']" class="nav-link">{{
             category.Description
           }}</a>
         </li>

@@ -22,6 +22,10 @@ export class AuthService {
   login(data: any) {
     return this.http.post<any>(this.endpointUrl + '/customer/login', data);
   }
+  editProfile(data: any) {
+    return this.http.post<any>(this.endpointUrl + '/customer/update', data);
+  }
+
 
   getCity() {
     return this.http.get<any>(this.endpointUrl + '/city/all');
